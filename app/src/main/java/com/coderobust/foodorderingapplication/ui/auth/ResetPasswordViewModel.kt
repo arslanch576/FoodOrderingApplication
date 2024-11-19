@@ -7,21 +7,21 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-class LoginViewModel:ViewModel() {
-    val authRepository=AuthRepository()
+class ResetPasswordViewModel(val authRepository: AuthRepository) :ViewModel(){
 
-    val currentUser=MutableStateFlow<FirebaseUser?>(null)
-    val failureMessage=MutableStateFlow<String?>(null)
+    val isEmailSent= MutableStateFlow<Boolean?>(null)
+    val failureMessage= MutableStateFlow<String?>(null)
 
-    init {
-        currentUser.value=authRepository.getCurrentUser()
-    }
 
-    fun login(emil:String,password:String){
+    fun resetPassword(email:String){
+        if(!email.trim().contains("@")){
+            failureMessage.value="Invalid Email"
+            return
+        }
         viewModelScope.launch {
-            val result=authRepository.signIn(emil,password)
+            val result=authRepository.resetPassword(email)
             if (result.isSuccess)
-                currentUser.value=result.getOrNull()
+                isEmailSent.value=result.getOrNull()
             else
                 failureMessage.value=result.exceptionOrNull()?.localizedMessage
         }

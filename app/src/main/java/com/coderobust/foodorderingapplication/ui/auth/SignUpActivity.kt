@@ -8,30 +8,31 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.coderobust.foodorderingapplication.MainActivity
 import com.coderobust.foodorderingapplication.databinding.ActivityLoginBinding
+import com.coderobust.foodorderingapplication.databinding.ActivitySignupBinding
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import kotlinx.coroutines.launch
 
-class LoginActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity() {
     lateinit var progressDialog: ProgressDialog
-    lateinit var binding:ActivityLoginBinding
+    lateinit var binding: ActivitySignupBinding
     lateinit var viewModel: LoginSignupViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel= LoginSignupViewModel(AuthRepository())
+        viewModel = LoginSignupViewModel(AuthRepository())
 
-        progressDialog=ProgressDialog(this)
-        progressDialog.setMessage("Please wait while we check your credentials...")
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Please wait while we create your account...")
         progressDialog.setCancelable(false)
 
         lifecycleScope.launch {
             viewModel.currentUser.collect {
                 if (it != null) {
                     progressDialog.dismiss()
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    startActivity(Intent(this@SignUpActivity, MainActivity::class.java))
                     finish()
                 }
             }
@@ -40,25 +41,25 @@ class LoginActivity : AppCompatActivity() {
             viewModel.failureMessage.collect {
                 if (it != null) {
                     progressDialog.dismiss()
-                    Toast.makeText(this@LoginActivity, it, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@SignUpActivity, it, Toast.LENGTH_SHORT).show()
                 }
             }
         }
-
         binding.signupTxt.setOnClickListener {
             startActivity(Intent(this,SignUpActivity::class.java))
             finish()
         }
-        binding.forgetPassword.setOnClickListener {
-            startActivity(Intent(this,ResetPasswordActivity::class.java))
-        }
-
         binding.loginbtn.setOnClickListener {
-            val email=binding.email.editText?.text.toString()
-            val password=binding.password.editText?.text.toString()
+            val email = binding.email.editText?.text.toString()
+            val password = binding.password.editText?.text.toString()
 
             progressDialog.show()
-            viewModel.login(email,password)
+            viewModel.signUp(
+                email,
+                password,
+                binding.confirmPassword.editText?.text.toString(),
+                binding.name.editText?.text.toString()
+            )
 
         }
 
