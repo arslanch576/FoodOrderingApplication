@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FoodOrderingApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ui.fooditems.AddFoodItemsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -23,19 +26,13 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.auth.SignUpActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.auth.ResetPasswordActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
