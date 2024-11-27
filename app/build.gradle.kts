@@ -58,4 +58,8 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+
+    // Views/Fragments integration
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.4")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
 }

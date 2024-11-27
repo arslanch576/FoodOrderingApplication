@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.coderobust.foodorderingapplication.MainActivity
+import com.coderobust.foodorderingapplication.ui.main.MainActivity
 import com.coderobust.foodorderingapplication.databinding.ActivityLoginBinding
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import kotlinx.coroutines.launch

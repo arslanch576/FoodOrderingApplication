@@ -1,4 +1,4 @@
-package com.coderobust.foodorderingapplication
+package com.coderobust.foodorderingapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,12 +6,13 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.coderobust.foodorderingapplication.R
 import com.coderobust.foodorderingapplication.model.repositories.FoodItemRepository
-import com.coderobust.foodorderingapplication.ui.MainViewModel
 import com.coderobust.foodorderingapplication.ui.fooditems.AddFoodItemsActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -20,17 +21,11 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.button).setOnClickListener {
-            startActivity(Intent(this, AddFoodItemsActivity::class.java))
-        }
+        val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val bottomNavigationView=findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.setupWithNavController(navHostFragment.navController)
 
-        val viewModel= MainViewModel(FoodItemRepository())
 
-        lifecycleScope.launch {
-            viewModel.foodItems.collect{
-                Toast.makeText(this@MainActivity, "Food items loaded (${it.size})", Toast.LENGTH_SHORT).show()
-            }
-        }
 
 
     }

@@ -2,13 +2,10 @@ package com.coderobust.foodorderingapplication.ui.auth
 
 import android.app.ProgressDialog
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.coderobust.foodorderingapplication.MainActivity
-import com.coderobust.foodorderingapplication.databinding.ActivityLoginBinding
 import com.coderobust.foodorderingapplication.databinding.ActivityResetPasswordBinding
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
