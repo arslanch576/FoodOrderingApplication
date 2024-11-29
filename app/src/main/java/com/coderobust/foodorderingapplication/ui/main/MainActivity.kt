@@ -2,10 +2,14 @@ package com.coderobust.foodorderingapplication.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -24,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val bottomNavigationView=findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
+
+        val drawerLayout=findViewById<DrawerLayout>(R.id.drawerLayout)
+        findViewById<ImageView>(R.id.drawer_icon).setOnClickListener {
+            drawerLayout.openDrawer(GravityCompat.START)
+        }
+
 
 
 
