@@ -4,24 +4,26 @@ import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.coderobust.foodorderingapplication.databinding.ActivityResetPasswordBinding
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ResetPasswordActivity : AppCompatActivity() {
     lateinit var progressDialog: ProgressDialog
     lateinit var binding:ActivityResetPasswordBinding
-    lateinit var viewModel: ResetPasswordViewModel
+    val viewModel: ResetPasswordViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel= ResetPasswordViewModel(AuthRepository())
 
         progressDialog=ProgressDialog(this)
         progressDialog.setMessage("Please wait a while...")

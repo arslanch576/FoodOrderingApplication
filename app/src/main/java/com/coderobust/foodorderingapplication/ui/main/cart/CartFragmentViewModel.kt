@@ -1,4 +1,4 @@
-package com.coderobust.foodorderingapplication.ui.main
+package com.coderobust.foodorderingapplication.ui.main.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

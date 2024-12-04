@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ResetPasswordViewModel(val authRepository: AuthRepository) :ViewModel(){
+@HiltViewModel
+class ResetPasswordViewModel @Inject constructor(val authRepository: AuthRepository) :ViewModel(){
 
     val isEmailSent= MutableStateFlow<Boolean?>(null)
     val failureMessage= MutableStateFlow<String?>(null)

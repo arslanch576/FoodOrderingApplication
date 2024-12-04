@@ -5,8 +5,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.snapshots
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class CartItemRepository {
+class CartItemRepository @Inject constructor() {
     val cartItemCollection=FirebaseFirestore.getInstance().collection("cartItems")
 
     suspend fun saveCartItem(cartItem: CartItem):Result<Boolean> {

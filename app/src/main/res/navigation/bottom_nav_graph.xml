@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/item_home"
-        android:name="com.coderobust.foodorderingapplication.ui.main.MainFragment"
+        android:name="com.coderobust.foodorderingapplication.ui.main.home.MainFragment"
         android:label="MainFragment" >
     </fragment>
     <fragment
         android:id="@+id/item_cart"
-        android:name="com.coderobust.foodorderingapplication.ui.main.CartFragment"
+        android:name="com.coderobust.foodorderingapplication.ui.main.cart.CartFragment"
         android:label="CartFragment" />
     <fragment
         android:id="@+id/item_deals"
-        android:name="com.coderobust.foodorderingapplication.ui.main.DealsFragment"
+        android:name="com.coderobust.foodorderingapplication.ui.main.deals.DealsFragment"
         android:label="DealsFragment" />
     <fragment
         android:id="@+id/item_orders"
-        android:name="com.coderobust.foodorderingapplication.ui.main.OrdersFragment"
+        android:name="com.coderobust.foodorderingapplication.ui.main.orders.OrdersFragment"
         android:label="OrdersFragment" />
 </navigation>

@@ -1,23 +1,21 @@
-package com.coderobust.foodorderingapplication.ui.main
+package com.coderobust.foodorderingapplication.ui.main.deals
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.coderobust.foodorderingapplication.R
-import com.coderobust.foodorderingapplication.databinding.FragmentCartBinding
-import com.coderobust.foodorderingapplication.databinding.FragmentMainBinding
+import com.coderobust.foodorderingapplication.databinding.FragmentDealsBinding
 
-class CartFragment : Fragment() {
+class DealsFragment : Fragment() {
 
-    lateinit var binding:FragmentCartBinding
+    lateinit var binding:FragmentDealsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=FragmentCartBinding.inflate(inflater,container,false)
+        binding=FragmentDealsBinding.inflate(inflater,container,false)
         return binding.root
     }
 

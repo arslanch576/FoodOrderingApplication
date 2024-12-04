@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coderobust.foodorderingapplication.model.repositories.FoodItemRepository
 import com.coderobust.foodorderingapplication.ui.FoodItem
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddFoodItemViewModel(val repository: FoodItemRepository): ViewModel() {
+@HiltViewModel
+class AddFoodItemViewModel @Inject constructor(val repository: FoodItemRepository): ViewModel() {
 
     val isSaved=MutableStateFlow<Boolean?>(null)
     val failureMessage=MutableStateFlow<String?>(null)

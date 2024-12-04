@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coderobust.foodorderingapplication.model.repositories.AuthRepository
 import com.google.firebase.auth.FirebaseUser
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginSignupViewModel(val authRepository:AuthRepository):ViewModel() {
+@HiltViewModel
+class LoginSignupViewModel @Inject constructor(val authRepository:AuthRepository):ViewModel() {
 
 
     val currentUser=MutableStateFlow<FirebaseUser?>(null)

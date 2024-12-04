@@ -5,8 +5,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.snapshots
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class FoodItemRepository {
+class FoodItemRepository @Inject constructor() {
     val foodItemCollection=FirebaseFirestore.getInstance().collection("foodItems")
 
     suspend fun saveFoodItem(foodItem: FoodItem):Result<Boolean> {
