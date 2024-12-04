@@ -17,8 +17,10 @@ import com.coderobust.foodorderingapplication.R
 import com.coderobust.foodorderingapplication.model.repositories.FoodItemRepository
 import com.coderobust.foodorderingapplication.ui.fooditems.AddFoodItemsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

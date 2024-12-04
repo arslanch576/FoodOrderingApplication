@@ -11,9 +11,9 @@ class CartItemViewHolder(val binding: ItemCartBinding) : BaseViewHolder(binding.
     override fun bind(data: Any) {
         val item=data as CartItem
 
-        binding.textFoodName.text = item.foodItem.name
-        binding.textQuantity.text = "Quantity: ${item.quantity}"
-        binding.textFoodPrice.text = "$${item.foodItem.price*item.quantity}"
+        binding.textFoodName.text = item.foodItem?.name
+        binding.textQuantity.text = "${item.quantity}"
+        binding.textFoodPrice.text = "$${item.foodItem?.price?:0*item.quantity}"
     }
 
 }
