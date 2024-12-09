@@ -23,4 +23,12 @@ class CartItemRepository @Inject constructor() {
 
     fun loadCartItem(foodItemId:String,userId:String)=cartItemCollection.whereEqualTo("userId",userId).whereEqualTo("foodItem.id",foodItemId).snapshots().map { it.toObjects(CartItem::class.java) }
     fun loadCartItems(userId:String)=cartItemCollection.whereEqualTo("userId",userId).snapshots().map { it.toObjects(CartItem::class.java) }
+
+    fun clearCart(userId:String) {
+        cartItemCollection.whereEqualTo("userId",userId).get().addOnSuccessListener {
+            for (document in it.documents){
+                document.reference.delete()
+            }
+        }
+    }
 }

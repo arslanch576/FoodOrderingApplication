@@ -17,4 +17,80 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="#FDECFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Total Cart -->
+        <TextView
+            android:id="@+id/tv_total_cart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Total: $0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Total Products -->
+        <TextView
+            android:id="@+id/tv_total_products"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Total Products: 0"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_cart" />
+
+        <!-- Proceed Button -->
+        <Button
+            android:id="@+id/btn_proceed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Proceed"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_products" />
+
+        <!-- Postal Address Input (Initially Hidden) -->
+        <EditText
+            android:id="@+id/et_postal_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter Postal Address"
+            android:inputType="textPostalAddress"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_proceed" />
+
+        <!-- Place Order Button (Initially Hidden) -->
+        <Button
+            android:id="@+id/btn_place_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Place Order"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_postal_address" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
