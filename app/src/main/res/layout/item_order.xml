@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <!-- Food Image -->
+
+    <!-- Food Name -->
+    <TextView
+        android:id="@+id/textFoodName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Food Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <!-- Food Price -->
+    <TextView
+        android:id="@+id/textFoodPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$9.99"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_green_dark"
+        app:layout_constraintStart_toStartOf="@id/textFoodName"
+        app:layout_constraintTop_toBottomOf="@id/textFoodName" />
+
+    <!-- Quantity Controls -->
+    <TextView
+        android:id="@+id/textFoodItems"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Food Name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/textFoodPrice"
+        app:layout_constraintTop_toBottomOf="@id/textFoodPrice"
+        />
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivered"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:background="@drawable/edit_text_background"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

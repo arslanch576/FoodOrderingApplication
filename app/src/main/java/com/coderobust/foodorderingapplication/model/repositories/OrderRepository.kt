@@ -20,6 +20,15 @@ class OrderRepository @Inject constructor() {
             return Result.failure(e)
         }
     }
+    suspend fun updateOrder(order: Order):Result<Boolean> {
+        try {
+            val document=orderCollection.document(order.id)
+            document.set(order).await()
+            return Result.success(true)
+        }catch (e:Exception){
+            return Result.failure(e)
+        }
+    }
 
-    fun loadOrders(userId:String)=orderCollection.whereEqualTo("userId",userId).snapshots().map { it.toObjects(Order::class.java) }
+    fun loadOrders(userId:String)=orderCollection.whereEqualTo("customerId",userId).snapshots().map { it.toObjects(Order::class.java) }
 }

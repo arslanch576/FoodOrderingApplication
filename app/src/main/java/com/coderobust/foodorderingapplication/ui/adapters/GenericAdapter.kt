@@ -5,11 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.coderobust.foodorderingapplication.databinding.ItemCartBinding
 import com.coderobust.foodorderingapplication.databinding.ItemFoodBinding
+import com.coderobust.foodorderingapplication.databinding.ItemOrderBinding
 import com.coderobust.foodorderingapplication.ui.CartItem
 import com.coderobust.foodorderingapplication.ui.FoodItem
+import com.coderobust.foodorderingapplication.ui.Order
 import com.coderobust.foodorderingapplication.ui.viewHolders.BaseViewHolder
 import com.coderobust.handcraftsshop.ui.viewHolders.CartItemViewHolder
 import com.coderobust.handcraftsshop.ui.viewHolders.FoodItemViewHolder
+import com.coderobust.handcraftsshop.ui.viewHolders.OrderViewHolder
 
 class GenericAdapter(val items: List<Any>) : RecyclerView.Adapter<BaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -17,10 +20,14 @@ class GenericAdapter(val items: List<Any>) : RecyclerView.Adapter<BaseViewHolder
             val binding =
                 ItemFoodBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return FoodItemViewHolder(binding)
-        }else{
+        }else if (viewType==1){
             val binding =
                 ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return CartItemViewHolder(binding)
+        }else{
+            val binding =
+                ItemOrderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return OrderViewHolder(binding)
         }
 
     }
@@ -32,7 +39,8 @@ class GenericAdapter(val items: List<Any>) : RecyclerView.Adapter<BaseViewHolder
     override fun getItemViewType(position: Int): Int {
         if (items.get(position) is FoodItem) return 0
         if (items.get(position) is CartItem) return 1
-        return 2
+        if (items.get(position) is Order) return 2
+        return 3
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
