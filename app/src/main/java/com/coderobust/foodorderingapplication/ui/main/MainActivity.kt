@@ -15,6 +15,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.coderobust.foodorderingapplication.R
 import com.coderobust.foodorderingapplication.model.repositories.FoodItemRepository
+import com.coderobust.foodorderingapplication.model.utils.CloudinaryUploadHelper.Companion.initializeCloudinary
 import com.coderobust.foodorderingapplication.ui.fooditems.AddFoodItemsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
+        initializeCloudinary(this)
         val navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val bottomNavigationView=findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navHostFragment.navController)

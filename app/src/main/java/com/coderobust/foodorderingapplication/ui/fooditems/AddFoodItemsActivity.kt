@@ -1,9 +1,15 @@
 package com.coderobust.foodorderingapplication.ui.fooditems
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,6 +26,7 @@ import kotlin.math.log
 
 @AndroidEntryPoint
 class AddFoodItemsActivity : AppCompatActivity() {
+    private var uri: Uri? = null
     lateinit var binding: ActivityAddFoodItemsBinding;
     val viewModel: AddFoodItemViewModel by viewModels()
 
@@ -71,9 +78,45 @@ class AddFoodItemsActivity : AppCompatActivity() {
             foodItem.price = priceValue
             foodItem.category = category
 
-            viewModel.saveFoodItem(foodItem)
+            if (uri == null)
+                viewModel.saveFoodItem(foodItem)
+            else
+                viewModel.uploadImageAndSaveFoodItem(getRealPathFromURI(uri!!)!!, foodItem)
 
         }
 
+        binding.buttonUploadImage.setOnClickListener {
+            chooseImageFromGallery()
+        }
+
+    }
+
+    private val galleryLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            uri = result.data?.data
+            if (uri != null) {
+                binding.imageFoodPreview.setImageURI(uri)
+            } else {
+                Log.e("Gallery", "No image selected")
+            }
+        }
+    }
+
+    private fun chooseImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        galleryLauncher.launch(intent)
+    }
+
+    private fun getRealPathFromURI(uri: Uri): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
+            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            if (cursor.moveToFirst()) {
+                return cursor.getString(columnIndex)
+            }
+        }
+        return null
     }
 }

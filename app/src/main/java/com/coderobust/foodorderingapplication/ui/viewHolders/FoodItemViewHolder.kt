@@ -2,6 +2,8 @@ package com.coderobust.handcraftsshop.ui.viewHolders
 
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.coderobust.foodorderingapplication.R
 import com.coderobust.foodorderingapplication.databinding.ActivityFoodItemDetailsBinding
 import com.coderobust.foodorderingapplication.databinding.ItemFoodBinding
 import com.coderobust.foodorderingapplication.ui.FoodItem
@@ -18,6 +20,12 @@ class FoodItemViewHolder(val binding: ItemFoodBinding) : BaseViewHolder(binding.
         binding.textDescription.text = item.description
         binding.textPrice.text = "$${item.price}"
         binding.textRating.text = "⭐ ${item.rating}"
+
+        Glide.with(itemView.context)
+            .load(item.image)
+            .placeholder(R.drawable.logo)
+            .error(R.drawable.logo)
+            .into(binding.imageView)
 
         binding.root.setOnClickListener {
             itemView.context.startActivity(Intent(itemView.context, FoodItemDetailsActivity::class.java).putExtra("data", Gson().toJson(item)))
